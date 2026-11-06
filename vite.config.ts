@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => {
     let apiKey = env.GEMINI_API_KEY || process.env.GEMINI_API_KEY || '';
     
     return {
+      base: './',
       server: {
         port: 3000,
         host: '0.0.0.0',

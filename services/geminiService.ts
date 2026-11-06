@@ -2,10 +2,19 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { LessonPlanFormState, Activity } from "../types";
 
-const API_KEY = (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_GEMINI_API_KEY) ||
-  (typeof process !== 'undefined' && (process.env as any)?.GEMINI_API_KEY) ||
-  (typeof window !== 'undefined' && window.localStorage?.getItem('GEMINI_API_KEY')) ||
-  "";
+export const getGeminiApiKey = (): string => {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    const stored = window.localStorage.getItem('GOOGLE_AI_STUDIO_API_KEY') || window.localStorage.getItem('GEMINI_API_KEY');
+    if (stored && stored.trim()) return stored.trim();
+  }
+  if (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_GEMINI_API_KEY) {
+    return (import.meta as any).env.VITE_GEMINI_API_KEY;
+  }
+  if (typeof process !== 'undefined' && (process.env as any)?.GEMINI_API_KEY) {
+    return (process.env as any).GEMINI_API_KEY;
+  }
+  return "";
+};
 
 interface GeneratedLessonPlanStructuredContent {
   objectives: string;
@@ -171,7 +180,11 @@ ${methodologyInstruction}
     });
   }
 
-  const ai = new GoogleGenAI({ apiKey: customApiKey || API_KEY });
+  const effectiveKey = customApiKey || getGeminiApiKey();
+  if (!effectiveKey) {
+    throw new Error("មិនទាន់បានកំណត់ Google Gemini API Key នៅឡើយទេ។ សូមបិទភ្ជាប់ API Key នៅរបារខាងលើនៃកម្មវិធី!");
+  }
+  const ai = new GoogleGenAI({ apiKey: effectiveKey });
   const response: GenerateContentResponse = await callWithRetry(() => ai.models.generateContent({
     model: "gemini-3.5-flash",
     contents: { parts },

@@ -15,6 +15,7 @@ import * as firebaseService from './services/firebaseService';
 import * as supabaseService from './services/supabaseService';
 import SavedLessonPlansModal from './components/SavedLessonPlansModal';
 import SupabaseSettingsModal from './components/SupabaseSettingsModal';
+import ApiKeyBar from './components/ApiKeyBar';
 
 const initialUsers: AppUser[] = [
   { id: 1, name: 'អ្នកគ្រប់គ្រង (Admin)', gender: 'ប្រុស', role: 'នាយក', phone: '092920920', username: 'admin', password: 'password', wordCount: 15, pptCount: 8, dailyAiGenCount: 0, lastAiGenDate: "" },
@@ -801,8 +802,10 @@ const App: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-slate-100 dark:bg-slate-950 py-8 px-4 sm:px-6 lg:px-8 font-['Kantumruy_Pro']">
-      {showAdminModal && (
+    <div className="min-h-screen bg-slate-100 dark:bg-slate-950 font-['Kantumruy_Pro'] flex flex-col">
+      <ApiKeyBar />
+      <div className="py-8 px-4 sm:px-6 lg:px-8 flex-grow">
+        {showAdminModal && (
         <AdminTable 
           users={users} 
           onClose={() => setShowAdminModal(false)}
@@ -1132,6 +1135,7 @@ const App: React.FC = () => {
         </div>
       </div>
     </div>
+  </div>
   );
 };
 

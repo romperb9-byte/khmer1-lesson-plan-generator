@@ -3,10 +3,19 @@ import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import PptxGenJS from 'pptxgenjs';
 import { LessonPlanFormState } from "../types";
 
-const API_KEY = (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_GEMINI_API_KEY) ||
-  (typeof process !== 'undefined' && (process.env as any)?.GEMINI_API_KEY) ||
-  (typeof window !== 'undefined' && window.localStorage?.getItem('GEMINI_API_KEY')) ||
-  "";
+export const getGeminiApiKey = (): string => {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    const stored = window.localStorage.getItem('GOOGLE_AI_STUDIO_API_KEY') || window.localStorage.getItem('GEMINI_API_KEY');
+    if (stored && stored.trim()) return stored.trim();
+  }
+  if (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_GEMINI_API_KEY) {
+    return (import.meta as any).env.VITE_GEMINI_API_KEY;
+  }
+  if (typeof process !== 'undefined' && (process.env as any)?.GEMINI_API_KEY) {
+    return (process.env as any).GEMINI_API_KEY;
+  }
+  return "";
+};
 
 export interface SlideStructure {
   slideTitle: string;
@@ -132,7 +141,7 @@ ${specificInstruction}
 ផ្ដល់លទ្ធផលត្រឹមតែជា JSON Array នៃ Object ដែលមាន keys: "slideTitle", "slideContent", "imagePrompt"។
 `;
     
-    const ai = new GoogleGenAI({ apiKey: customApiKey || API_KEY });
+    const ai = new GoogleGenAI({ apiKey: customApiKey || getGeminiApiKey() });
     const response: GenerateContentResponse = await callWithRetry(() => ai.models.generateContent({
         model: "gemini-3.7-flash",
         contents: prompt,
@@ -160,7 +169,7 @@ export const generateImageForSlide = async (prompt: string, grade: string, custo
             style = "clean modern educational infographic visual, professional minimalist diagram, high clarity, clean white background";
         }
         
-        const ai = new GoogleGenAI({ apiKey: customApiKey || API_KEY });
+        const ai = new GoogleGenAI({ apiKey: customApiKey || getGeminiApiKey() });
         const response: GenerateContentResponse = await callWithRetry(() => ai.models.generateContent({
             model: 'gemini-3.1-flash-lite-image',
             contents: { parts: [{ text: `${prompt}, ${style}` }] },

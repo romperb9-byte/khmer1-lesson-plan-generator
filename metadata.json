@@ -1,0 +1,7 @@
+{
+  "name": "Khmer Lesson Plan Generator",
+  "description": "A web application to help teachers create lesson plans, with an option to use Google AI for content generation. The UI is primarily in Khmer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"],
+  "prompt": ""
+}

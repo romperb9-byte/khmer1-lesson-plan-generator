@@ -1021,6 +1021,16 @@ const App: React.FC = () => {
                 កិច្ចតែងការ
               </button>
               <button
+                onClick={() => window.open('https://romperb9-byte.github.io/primary-math-lesson-plan/', '_blank')}
+                className="flex items-center gap-2.5 px-6 py-3 rounded-2xl text-[14px] font-bold transition-all duration-300 text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-white dark:hover:bg-slate-900"
+                title="កិច្ចកញ្ចប់គណិត"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+                កិច្ចកញ្ចប់គណិត
+              </button>
+              <button
                 onClick={() => window.open('https://fliphtml5.com/bookcase/essub', '_blank')}
                 className="flex items-center gap-2.5 px-6 py-3 rounded-2xl text-[14px] font-bold transition-all duration-300 text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-white dark:hover:bg-slate-900"
               >

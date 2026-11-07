@@ -56,6 +56,7 @@ const SavedLessonPlansModal: React.FC<SavedLessonPlansModalProps> = ({
       subject: record.subject || '',
       lessonNo: record.lesson_no || '',
       lessonTitle: record.lesson_title || record.title || '',
+      lessonSubtitle: record.lesson_subtitle || '',
       teacherName: record.teacher_name || '',
       classInCharge: record.class_in_charge || '',
       durationDetail: record.duration_detail || '',

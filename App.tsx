@@ -28,6 +28,7 @@ const initialFormData: LessonPlanFormState = {
   subject: '',
   lessonNo: '',
   lessonTitle: '',
+  lessonSubtitle: '',
   teacherName: '',
   classInCharge: '',
   durationDetail: '', 
@@ -423,7 +424,9 @@ const App: React.FC = () => {
     try {
       const relevantData = { 
         subject: formData.subject, 
+        lessonNo: formData.lessonNo,
         lessonTitle: formData.lessonTitle, 
+        lessonSubtitle: formData.lessonSubtitle,
         classInCharge: formData.classInCharge, 
         durationDetail: formData.durationDetail,
         attachmentText: formData.attachmentText,
@@ -622,6 +625,7 @@ const App: React.FC = () => {
         <FormField id="subject" label="មុខវិជ្ជា" value={formData.subject} onChange={handleChange} placeholder="ឧទាហរណ៍៖ គណិតវិទ្យា" required />
         <FormField id="lessonNo" label="មេរៀនទី" value={formData.lessonNo} onChange={handleChange} placeholder="ឧទាហរណ៍៖ ១" />
         <FormField id="lessonTitle" label="ចំណងជើងមេរៀន" value={formData.lessonTitle} onChange={handleChange} placeholder="ឧទាហរណ៍៖ សមីការដឺក្រេទីមួយ" required />
+        <FormField id="lessonSubtitle" label="ចំណងជើងរង" value={formData.lessonSubtitle || ''} onChange={handleChange} placeholder="ឧទាហរណ៍៖ ខ្លឹមសាររង ឬ ចំណងជើងរង..." />
         <FormField id="teacherName" label="បង្រៀនដោយ (ឈ្មោះគ្រូ)" value={formData.teacherName} onChange={handleChange} placeholder="ឈ្មោះគ្រូបង្រៀន" />
         <FormField 
           id="classInCharge" 

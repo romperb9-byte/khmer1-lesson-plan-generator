@@ -28,12 +28,15 @@ export const generateLessonPlanPdf = async (formData: LessonPlanFormState): Prom
   }
 
   const {
-    date, subject, lessonNo, lessonTitle, teacherName, classInCharge,
+    date, subject, lessonNo, lessonTitle, lessonSubtitle, teacherName, classInCharge,
     durationDetail, sourceBook, objectives, materials, activities
   } = formData;
 
   const formattedDate = formatDateInKhmer(date);
-  const lessonFullTitle = lessonNo ? `មេរៀនទី ${lessonNo}៖ ${lessonTitle}` : lessonTitle;
+  let lessonFullTitle = lessonNo ? `មេរៀនទី ${lessonNo}៖ ${lessonTitle}` : lessonTitle;
+  if (lessonSubtitle && lessonSubtitle.trim()) {
+    lessonFullTitle += ` (ចំណងជើងរង៖ ${lessonSubtitle.trim()})`;
+  }
 
   const container = document.createElement('div');
   container.style.position = 'absolute';

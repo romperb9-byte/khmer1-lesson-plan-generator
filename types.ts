@@ -25,6 +25,7 @@ export interface LessonPlanFormState {
   subject: string;
   lessonNo: string;
   lessonTitle: string;
+  lessonSubtitle?: string;
   teacherName: string;
   classInCharge: string;
   durationDetail: string; 

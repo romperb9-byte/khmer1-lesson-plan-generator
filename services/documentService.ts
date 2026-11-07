@@ -113,12 +113,15 @@ const formatDateInKhmer = (dateString: string): string => {
 
 export const generateLessonPlanDocx = async (formData: LessonPlanFormState): Promise<Blob> => {
   const {
-    date, subject, lessonNo, lessonTitle, teacherName, classInCharge,
+    date, subject, lessonNo, lessonTitle, lessonSubtitle, teacherName, classInCharge,
     durationDetail, sourceBook, objectives, materials, activities
   } = formData;
 
   const formattedDate = formatDateInKhmer(date);
-  const lessonFullTitle = lessonNo ? `មេរៀនទី ${lessonNo}៖ ${lessonTitle}` : lessonTitle;
+  let lessonFullTitle = lessonNo ? `មេរៀនទី ${lessonNo}៖ ${lessonTitle}` : lessonTitle;
+  if (lessonSubtitle && lessonSubtitle.trim()) {
+    lessonFullTitle += ` (ចំណងជើងរង៖ ${lessonSubtitle.trim()})`;
+  }
 
   const docChildren: (Paragraph | Table)[] = [
     new Paragraph({

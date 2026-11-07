@@ -228,7 +228,7 @@ export const createPptxPresentation = async (
             { rect: { x: 0, y: 7.1, w: '100%', h: 0.4, fill: { color: 'F8FAFC' } } },
             { 
               text: { 
-                text: `${formData.subject ? formData.subject + ' • ' : ''}${formData.lessonTitle || 'មេរៀន'}${formData.classInCharge ? ' (' + formData.classInCharge + ')' : ''}`, 
+                text: `${formData.subject ? formData.subject + ' • ' : ''}${formData.lessonTitle || 'មេរៀន'}${formData.lessonSubtitle ? ' - ' + formData.lessonSubtitle : ''}${formData.classInCharge ? ' (' + formData.classInCharge + ')' : ''}`, 
                 options: { x: 0.5, y: 7.12, w: 8.5, h: 0.35, fontFace: KHMER_FONT, fontSize: 10, color: COLOR_MUTED } 
               } 
             },

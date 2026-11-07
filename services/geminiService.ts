@@ -71,7 +71,7 @@ function cleanHtmlTags(text: string | undefined | null): string {
 }
 
 export const generateLessonPlanContentWithGemini = async (
-  formData: Pick<LessonPlanFormState, 'subject' | 'lessonTitle' | 'classInCharge' | 'durationDetail' | 'attachmentText' | 'attachmentImages'>,
+  formData: Pick<LessonPlanFormState, 'subject' | 'lessonTitle' | 'classInCharge' | 'durationDetail' | 'attachmentText' | 'attachmentImages'> & { lessonSubtitle?: string; lessonNo?: string },
   customApiKey?: string
 ): Promise<GeneratedLessonPlanStructuredContent> => {
   const gradeInput = formData.classInCharge || "";
@@ -151,7 +151,7 @@ export const generateLessonPlanContentWithGemini = async (
 
 ព័ត៌មានមូលដ្ឋាន៖
 - មុខវិជ្ជា៖ ${formData.subject}
-- មេរៀន៖ ${formData.lessonTitle}
+- មេរៀន៖ ${formData.lessonNo ? `មេរៀនទី ${formData.lessonNo}៖ ` : ''}${formData.lessonTitle}${formData.lessonSubtitle ? ` (ចំណងជើងរង៖ ${formData.lessonSubtitle})` : ''}
 - ថ្នាក់៖ ${formData.classInCharge}
 
 ${methodologyInstruction}

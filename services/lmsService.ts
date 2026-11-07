@@ -64,12 +64,15 @@ const formatDateInKhmer = (dateString: string): string => {
 
 export const generateLmsPackageHtml = (formData: LessonPlanFormState): string => {
   const {
-    date, subject, lessonNo, lessonTitle, teacherName, classInCharge,
+    date, subject, lessonNo, lessonTitle, lessonSubtitle, teacherName, classInCharge,
     durationDetail, sourceBook, objectives, materials, activities,
     attachmentText, attachmentImages
   } = formData;
 
-  const lessonFullTitle = lessonNo ? `មេរៀនទី ${lessonNo}៖ ${lessonTitle}` : lessonTitle;
+  let lessonFullTitle = lessonNo ? `មេរៀនទី ${lessonNo}៖ ${lessonTitle}` : lessonTitle;
+  if (lessonSubtitle && lessonSubtitle.trim()) {
+    lessonFullTitle += ` (ចំណងជើងរង៖ ${lessonSubtitle.trim()})`;
+  }
   
   const activitiesToDisplay = activities.length > 0 ? activities : Array(5).fill(null).map((_, i) => ({ 
     id: `empty-${i}`,

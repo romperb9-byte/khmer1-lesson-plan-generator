@@ -35,6 +35,7 @@ export interface SavedLessonPlanRecord {
   subject: string;
   lesson_no: string;
   lesson_title: string;
+  lesson_subtitle?: string;
   teacher_name: string;
   class_in_charge: string;
   date: string;
@@ -253,6 +254,7 @@ export const saveLessonPlanToDb = async (formData: LessonPlanFormState, username
     subject: formData.subject,
     lesson_no: formData.lessonNo,
     lesson_title: formData.lessonTitle,
+    lesson_subtitle: formData.lessonSubtitle || '',
     teacher_name: formData.teacherName,
     class_in_charge: formData.classInCharge,
     date: formData.date,
